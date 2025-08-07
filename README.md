@@ -1,6 +1,4 @@
-# xyberverse_app
 
-Gun simulation app.
 
 ## Getting Started
 

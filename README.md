@@ -15,6 +15,7 @@ Uygulama; kullanıcı doğrulama, oda oluşturma ve **WebRTC tabanlı sesli/gör
 API_URL=https://example.com/api
 ```
 * gen.sh dosyasından ilgili Flavor run komutunu bulabilirsiniz.
+* gen.sh dosyasından ilgili runner run komutunu bulabilirsiniz (generating routes,assets.).
 
 ## 📂 Proje Yapısı (Clean Architecture)
 

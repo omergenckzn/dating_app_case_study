@@ -3,12 +3,13 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 
+///Review notu: _log methodlarını developmenta çalışma mantığını kavramak için kaldırmadım. prod versiyonunda kaldırılacak.
+
 typedef IceCallback = void Function(RTCIceCandidate candidate);
 
 class WebRTCService {
   WebRTCService();
 
-  // Renderers (UI reads these)
   final RTCVideoRenderer localRenderer = RTCVideoRenderer();
   final RTCVideoRenderer remoteRenderer = RTCVideoRenderer();
 
@@ -19,6 +20,8 @@ class WebRTCService {
   bool _camOn = true;
   bool _initialized = false;
 
+
+  ///This will be moved into Constants.
   final Map<String, dynamic> _pcConfig = <String, dynamic>{
     'sdpSemantics': 'unified-plan',
     'bundlePolicy': 'balanced',

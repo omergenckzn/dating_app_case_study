@@ -57,25 +57,11 @@ class $AssetsIconsGen {
   AssetGenImage get cuteArrow =>
       const AssetGenImage('assets/icons/cute_arrow.png');
 
-  /// File path: assets/icons/doubleheart.png
-  AssetGenImage get doubleheart =>
-      const AssetGenImage('assets/icons/doubleheart.png');
-
   /// File path: assets/icons/eye_open.svg
   SvgGenImage get eyeOpen => const SvgGenImage('assets/icons/eye_open.svg');
 
   /// File path: assets/icons/facebook.svg
   SvgGenImage get facebook => const SvgGenImage('assets/icons/facebook.svg');
-
-  /// File path: assets/icons/global-line.svg
-  SvgGenImage get globalLine =>
-      const SvgGenImage('assets/icons/global-line.svg');
-
-  /// File path: assets/icons/global.svg
-  SvgGenImage get global => const SvgGenImage('assets/icons/global.svg');
-
-  /// File path: assets/icons/google.svg
-  SvgGenImage get google => const SvgGenImage('assets/icons/google.svg');
 
   /// File path: assets/icons/hashtag.svg
   SvgGenImage get hashtag => const SvgGenImage('assets/icons/hashtag.svg');
@@ -101,12 +87,8 @@ class $AssetsIconsGen {
         apple,
         arrowLeft,
         cuteArrow,
-        doubleheart,
         eyeOpen,
         facebook,
-        globalLine,
-        global,
-        google,
         hashtag,
         hearth,
         popButton

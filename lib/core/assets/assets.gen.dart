@@ -34,10 +34,6 @@ class $AssetsIconsGen {
   AssetGenImage get sinFlixLogo =>
       const AssetGenImage('assets/icons/SinFlixLogo.png');
 
-  /// File path: assets/icons/SinFlixSplash.png
-  AssetGenImage get sinFlixSplash =>
-      const AssetGenImage('assets/icons/SinFlixSplash.png');
-
   /// File path: assets/icons/Unlock.svg
   SvgGenImage get unlock => const SvgGenImage('assets/icons/Unlock.svg');
 
@@ -75,10 +71,6 @@ class $AssetsIconsGen {
   /// File path: assets/icons/facebook.svg
   SvgGenImage get facebook => const SvgGenImage('assets/icons/facebook.svg');
 
-  /// File path: assets/icons/fast_forward_filled.svg
-  SvgGenImage get fastForwardFilled =>
-      const SvgGenImage('assets/icons/fast_forward_filled.svg');
-
   /// File path: assets/icons/global-line.svg
   SvgGenImage get globalLine =>
       const SvgGenImage('assets/icons/global-line.svg');
@@ -95,60 +87,8 @@ class $AssetsIconsGen {
   /// File path: assets/icons/hearth.png
   AssetGenImage get hearth => const AssetGenImage('assets/icons/hearth.png');
 
-  /// File path: assets/icons/music-2-fill.svg
-  SvgGenImage get music2Fill =>
-      const SvgGenImage('assets/icons/music-2-fill.svg');
-
-  /// File path: assets/icons/my_car_marker.svg
-  SvgGenImage get myCarMarker =>
-      const SvgGenImage('assets/icons/my_car_marker.svg');
-
-  /// File path: assets/icons/my_car_markerPNG.png
-  AssetGenImage get myCarMarkerPNG =>
-      const AssetGenImage('assets/icons/my_car_markerPNG.png');
-
-  /// File path: assets/icons/notification-4-fill.svg
-  SvgGenImage get notification4Fill =>
-      const SvgGenImage('assets/icons/notification-4-fill.svg');
-
-  /// File path: assets/icons/password.svg
-  SvgGenImage get password => const SvgGenImage('assets/icons/password.svg');
-
-  /// File path: assets/icons/pencil-line.svg
-  SvgGenImage get pencilLine =>
-      const SvgGenImage('assets/icons/pencil-line.svg');
-
-  /// File path: assets/icons/phone-line.svg
-  SvgGenImage get phoneLine => const SvgGenImage('assets/icons/phone-line.svg');
-
   /// File path: assets/icons/pop_button.svg
   SvgGenImage get popButton => const SvgGenImage('assets/icons/pop_button.svg');
-
-  /// File path: assets/icons/user.svg
-  SvgGenImage get user => const SvgGenImage('assets/icons/user.svg');
-
-  /// File path: assets/icons/user_circle.svg
-  SvgGenImage get userCircle =>
-      const SvgGenImage('assets/icons/user_circle.svg');
-
-  /// File path: assets/icons/user_simple.svg
-  SvgGenImage get userSimple =>
-      const SvgGenImage('assets/icons/user_simple.svg');
-
-  /// File path: assets/icons/vehicle.svg
-  SvgGenImage get vehicle => const SvgGenImage('assets/icons/vehicle.svg');
-
-  /// File path: assets/icons/volume-up-fill.svg
-  SvgGenImage get volumeUpFill =>
-      const SvgGenImage('assets/icons/volume-up-fill.svg');
-
-  /// File path: assets/icons/white_check_box_filled.svg
-  SvgGenImage get whiteCheckBoxFilled =>
-      const SvgGenImage('assets/icons/white_check_box_filled.svg');
-
-  /// File path: assets/icons/white_gpace.png
-  AssetGenImage get whiteGpace =>
-      const AssetGenImage('assets/icons/white_gpace.png');
 
   /// List of all assets
   List<dynamic> get values => [
@@ -158,7 +98,6 @@ class $AssetsIconsGen {
         hide,
         message,
         sinFlixLogo,
-        sinFlixSplash,
         unlock,
         accountCircleLine,
         account,
@@ -170,27 +109,12 @@ class $AssetsIconsGen {
         doubleheart,
         eyeOpen,
         facebook,
-        fastForwardFilled,
         globalLine,
         global,
         google,
         hashtag,
         hearth,
-        music2Fill,
-        myCarMarker,
-        myCarMarkerPNG,
-        notification4Fill,
-        password,
-        pencilLine,
-        phoneLine,
-        popButton,
-        user,
-        userCircle,
-        userSimple,
-        vehicle,
-        volumeUpFill,
-        whiteCheckBoxFilled,
-        whiteGpace
+        popButton
       ];
 }
 

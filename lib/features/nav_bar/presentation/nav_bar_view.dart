@@ -17,8 +17,8 @@ class NavbarView extends StatefulWidget {
 class _NavbarViewState extends State<NavbarView> {
   int _selectedIndex = 0;
   final _routes = [
-    const HomeRoute(),
-    const ProfileRoute(),
+    const UsernameRoute(),
+    const UsernameRoute(),
   ];
 
   void _onItemTapped(int index) {

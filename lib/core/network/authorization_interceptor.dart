@@ -18,7 +18,6 @@ class AuthorizationInterceptor extends Interceptor {
     }
 
     final token = await _tokenService.getAccessToken();
-    print('current token $token');
     if (token != null) {
       options.headers['Authorization'] = 'Bearer $token';
     }
@@ -30,12 +29,7 @@ class AuthorizationInterceptor extends Interceptor {
     DioException err,
     ErrorInterceptorHandler handler,
   ) async {
-    if (err.response?.statusCode == 401 ||
-        err.response?.statusCode == 403 ||
-        err.response?.statusCode == 400) {
-      await _tokenService.clearAccessToken();
-      AuthRedirector().redirectToLogin();
-    }
+
     super.onError(err, handler);
   }
 }

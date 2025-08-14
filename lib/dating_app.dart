@@ -2,10 +2,14 @@ import 'package:dating_app/core/network/auth_redirector.dart';
 import 'package:dating_app/core/router/app_router.dart';
 import 'package:dating_app/core/router/observers/custom_route_observer.dart';
 import 'package:dating_app/core/theme/dating_app_color.dart';
-import 'package:dating_app/features/home/domain/use_case/get_favorite_movies.dart';
-import 'package:dating_app/features/profile/presentation/state/favorite_movies_cubit/favorite_movies_cubit.dart';
-import 'package:dating_app/features/user/domain/use_case/get_profile_details.dart';
-import 'package:dating_app/features/user/presentation/state/profile_cubit/profile_cubit.dart';
+import 'package:dating_app/features/auth/presentation/state/username_cubit.dart';
+import 'package:dating_app/features/rtc/domain/use_case/create_room.dart';
+import 'package:dating_app/features/rtc/domain/use_case/join_room.dart';
+import 'package:dating_app/features/rtc/domain/use_case/leave_room.dart';
+import 'package:dating_app/features/rtc/domain/use_case/toggle_camera.dart';
+import 'package:dating_app/features/rtc/domain/use_case/toggle_mic.dart';
+import 'package:dating_app/features/rtc/presentation/state/call_bloc/call_bloc.dart';
+import 'package:dating_app/features/rtc/presentation/state/room_cubit/room_cubit.dart';
 import 'package:dating_app/flavors.dart';
 import 'package:dating_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -29,13 +33,21 @@ class _DatingAppState extends State<DatingApp> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) =>
-              ProfileCubit(di.getIt<GetProfileDetails>())..fetchProfile(),
+          create: (context) => UsernameCubit(),
         ),
         BlocProvider(
-          create: (context) =>
-              FavoriteMoviesCubit(di.getIt<GetFavoriteMovies>())
-                ..fetchFavorites(),
+          create: (context) => CallBloc(
+            leaveRoom: di.getIt<LeaveRoom>(),
+            toggleCamera: di.getIt<ToggleCamera>(),
+            toggleMic: di.getIt<ToggleMic>(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => RoomCubit(
+            leaveRoom: di.getIt<LeaveRoom>(),
+            createRoom: di.getIt<CreateRoom>(),
+            joinRoom: di.getIt<JoinRoom>(),
+          ),
         ),
       ],
       child: ScreenUtilInit(

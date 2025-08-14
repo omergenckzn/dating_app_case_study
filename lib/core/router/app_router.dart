@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:dating_app/core/router/app_router.gr.dart';
-import 'package:dating_app/core/router/guards/auth_guard.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'View,Route')
 final class AppRouter extends RootStackRouter {
@@ -8,51 +7,29 @@ final class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
         CustomRoute(
-          page: SplashRoute.page,
+            page: SplashRoute.page,
+            transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
+            durationInMilliseconds: 500,
+            initial: true),
+        CustomRoute(
+          page: UsernameRoute.page,
           transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
           durationInMilliseconds: 500,
         ),
         CustomRoute(
-          page: SignInRoute.page,
+          page: CallRoute.page,
           transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
           durationInMilliseconds: 500,
         ),
         CustomRoute(
-          page: RegisterRoute.page,
-          transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
-          durationInMilliseconds: 500,
-        ),
-        CustomRoute(
-          page: ProfilePhotoRoute.page,
+          page: LobbyRoute.page,
           transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
           durationInMilliseconds: 500,
         ),
         AutoRoute(
           page: NavbarRoute.page,
-          initial: true,
-          guards: [
-            AuthGuard(),
-          ],
+          guards: [],
           children: [
-            AutoRoute(
-              initial: true,
-              guards: [
-                AuthGuard(),
-              ],
-              page: HomeRoute.page,
-            ),
-            AutoRoute(
-              guards: [
-                AuthGuard(),
-              ],
-              page: MovieDetailRoute.page,
-            ),
-            AutoRoute(
-              guards: [
-                AuthGuard(),
-              ],
-              page: ProfileRoute.page,
-            ),
             RedirectRoute(path: '*', redirectTo: ''),
           ],
         ),

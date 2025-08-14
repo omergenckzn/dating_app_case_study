@@ -50,19 +50,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: '',
-    appId: '',
-    messagingSenderId: '',
-    projectId: '',
-    storageBucket: '',
+    apiKey: 'AIzaSyDcXgiTMBTWjGkYGYQ1zcMV7bW_ARAH1sU',
+    appId: '1:866542342259:android:a46691201f65ee130e5a06',
+    messagingSenderId: '866542342259',
+    projectId: 'dating-app-56ddc',
+    storageBucket: 'dating-app-56ddc.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: '',
-    appId: '',
-    messagingSenderId: '',
-    projectId: '',
-    storageBucket: '',
-    iosBundleId: '',
+    apiKey: 'AIzaSyDcXgiTMBTWjGkYGYQ1zcMV7bW_ARAH1sU',
+    appId: '1:866542342259:ios:e254578c24549d540e5a06',
+    messagingSenderId: '866542342259',
+    projectId: 'dating-app-56ddc',
+    storageBucket: 'dating-app-56ddc.firebasestorage.app',
+    iosBundleId: 'com.datingapp.datingapp',
   );
 }

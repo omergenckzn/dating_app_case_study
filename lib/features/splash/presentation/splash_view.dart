@@ -17,7 +17,7 @@ class _SplashViewState extends State<SplashView> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 2), () {
-      context.router.replaceAll([const NavbarRoute()]);
+      context.router.replaceAll([const UsernameRoute()]);
     });
   }
 
@@ -26,10 +26,7 @@ class _SplashViewState extends State<SplashView> {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(Assets.icons.sinFlixSplash.path),
-            fit: BoxFit.cover,
-          ),
+
         ),
       ),
     );

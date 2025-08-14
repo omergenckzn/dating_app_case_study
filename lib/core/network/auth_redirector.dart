@@ -15,6 +15,6 @@ class AuthRedirector {
   }
 
   void redirectToLogin() {
-    _context.router.replace(const SignInRoute());
+    _context.router.replace(const UsernameRoute());
   }
 }

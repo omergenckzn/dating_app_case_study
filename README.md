@@ -1,14 +1,65 @@
 
+````markdown
+# Dating App – WebRTC Görüşme Altyapısı
 
-## Getting Started
+Bu proje, Flutter kullanılarak geliştirilmiş bir **Dating App** uygulamasıdır.  
+Uygulama; kullanıcı doğrulama, oda oluşturma ve **WebRTC tabanlı sesli/görüntülü görüşme** özelliklerini içerir.
 
-This project is a starting point for a Flutter application.
+## 🚀 Kurulum
 
-A few resources to get you started if this is your first Flutter project:
+### 1. Ortam değişkenleri
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+* `.env` dosyasında API adreslerini tanımla:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```
+API_URL=https://example.com/api
+```
+* gen.sh dosyasından ilgili Flavor run komutunu bulabilirsiniz.
+
+## 📂 Proje Yapısı (Clean Architecture)
+
+## 📡 WebRTC Akışı
+
+1. initRenderers()
+
+    * `localRenderer` ve `remoteRenderer` başlatılır.
+    * `getUserMedia()` ile kamera/mikrofon başlatılır.
+    * Yerel video ekrana basılır.
+
+2. **Peer Connection**
+
+    * STUN/TURN server bilgileri ile `RTCPeerConnection` oluşturulur.
+    * Local track’ler (`audio`, `video`) eklenir.
+    * `onTrack` event’i ile karşı tarafın videosu `remoteRenderer`’a bağlanır.
+    * `onIceCandidate` ile ICE candidate’ler sinyalleşme servisine gönderilir.
+
+3. **Signaling** (Harici Sunucu ile)
+
+    * **Caller** → `createOffer()` → karşıya gönder.
+    * **Callee** → `createAnswer()` → cevap gönder.
+    * ICE candidate’ler karşılıklı eklenir.
+
+4. **Call Kontrolleri**
+
+    * `toggleMic()` → Mikrofon aç/kapa.
+    * `toggleCamera()` → Kamera aç/kapa.
+
+---
+
+
+## 📲 Oda Paylaşımı
+
+`share_plus` ile oda bilgisi paylaşılır:
+
+
+## ⚠ Notlar
+
+* WebRTC için **signaling server** bu projede Cloud Firestore Üzerinden Çağrılır.
+* STUN server olarak Google’ın public server’ları kullanıldı; production için TURN eklenmesi önerilir.
+*Direct WebRTC paketinin seçilme sebebi config yapmaya daha müsait olması (p2p).
+Signaling için firestore un kullanılması sebebi de serverless bir şekilde implemente edilebilmesidir.
+Daha complex çözümler için socket io kurulabilir.
+---
+
+
+

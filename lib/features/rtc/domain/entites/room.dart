@@ -1,4 +1,3 @@
-// lib/features/rtc/domain/entities/room.dart
 import 'package:equatable/equatable.dart';
 
 class Room extends Equatable {

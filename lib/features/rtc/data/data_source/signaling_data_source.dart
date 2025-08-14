@@ -1,12 +1,18 @@
-// lib/features/rtc/data/datasources/firestore_signaling_data_source.dart
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 abstract class SignalingDataSource {
   Future<String> createRoomDoc(String username, String sdp, String type);
   Future<Map<String, dynamic>?> getRoom(String roomId);
   Stream<DocumentSnapshot<Map<String, dynamic>>> roomStream(String roomId);
-  Stream<QuerySnapshot<Map<String, dynamic>>> remoteCandidatesStream(String roomId, {required bool forCallee});
-  Future<void> addIceCandidate(String roomId, Map<String, dynamic> cand, {required bool forCaller});
+  Stream<QuerySnapshot<Map<String, dynamic>>> remoteCandidatesStream(
+    String roomId, {
+    required bool forCallee,
+  });
+  Future<void> addIceCandidate(
+    String roomId,
+    Map<String, dynamic> cand, {
+    required bool forCaller,
+  });
   Future<Map<String, dynamic>> joinRoomTx({
     required String roomId,
     required String username,
@@ -47,19 +53,19 @@ class FirestoreSignalingDataSource implements SignalingDataSource {
 
   @override
   Stream<QuerySnapshot<Map<String, dynamic>>> remoteCandidatesStream(
-      String roomId, {
-        required bool forCallee,
-      }) {
+    String roomId, {
+    required bool forCallee,
+  }) {
     final sub = forCallee ? 'calleeCandidates' : 'callerCandidates';
     return _rooms.doc(roomId).collection(sub).orderBy('ts').snapshots();
   }
 
   @override
   Future<void> addIceCandidate(
-      String roomId,
-      Map<String, dynamic> cand, {
-        required bool forCaller,
-      }) async {
+    String roomId,
+    Map<String, dynamic> cand, {
+    required bool forCaller,
+  }) async {
     final sub = forCaller ? 'callerCandidates' : 'calleeCandidates';
     await _rooms.doc(roomId).collection(sub).add({
       ...cand,
@@ -67,7 +73,6 @@ class FirestoreSignalingDataSource implements SignalingDataSource {
     });
   }
 
-  /// Tek transaction: oda dolu mu kontrol + participant ekle + answer yaz.
   @override
   Future<Map<String, dynamic>> joinRoomTx({
     required String roomId,
@@ -82,12 +87,13 @@ class FirestoreSignalingDataSource implements SignalingDataSource {
         throw StateError('Room not found');
       }
       final data = (snap.data() ?? <String, dynamic>{});
-      final List<dynamic> current = (data['participants'] as List<dynamic>? ?? <dynamic>[]);
+      final current = (data['participants'] as List<dynamic>? ?? <dynamic>[]);
       if (current.length >= 2 && !current.contains(username)) {
         throw StateError('Room is full');
       }
 
-      final next = <String>{...current.map((e) => e.toString()), username}.toList();
+      final next =
+          <String>{...current.map((e) => e.toString()), username}.toList();
 
       if (next.length > 2) {
         throw StateError('Room is full');
@@ -113,16 +119,20 @@ class FirestoreSignalingDataSource implements SignalingDataSource {
       final snap = await tx.get(ref);
       if (!snap.exists) return;
       final data = snap.data()!;
-      final List<dynamic> cur = (data['participants'] as List<dynamic>? ?? <dynamic>[]);
-      final next = cur.where((e) => e != username).map((e) => e.toString()).toList();
+      final cur = (data['participants'] as List<dynamic>? ?? <dynamic>[]);
+      final next =
+          cur.where((e) => e != username).map((e) => e.toString()).toList();
 
       if (next.isEmpty) {
-        // Oda boşaldı -> oda & ICE alt koleksiyonlarını temizle
         final caller = await ref.collection('callerCandidates').get();
         final callee = await ref.collection('calleeCandidates').get();
         final batch = _db.batch();
-        for (final d in caller.docs) batch.delete(d.reference);
-        for (final d in callee.docs) batch.delete(d.reference);
+        for (final d in caller.docs) {
+          batch.delete(d.reference);
+        }
+        for (final d in callee.docs) {
+          batch.delete(d.reference);
+        }
         batch.delete(ref);
         await batch.commit();
       } else {

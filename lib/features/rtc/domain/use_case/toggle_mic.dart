@@ -1,4 +1,3 @@
-// lib/features/rtc/domain/usecases/toggle_mic.dart
 import 'package:dating_app/features/rtc/domain/repositories/signaling_repository.dart';
 
 class ToggleMic {

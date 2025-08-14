@@ -6,11 +6,5 @@ class ApiRoutes {
       dotenv.env['API_BASE_URL_PRODUCTION'] ?? '';
   static String get baseUrlStaging => dotenv.env['API_BASE_URL_STAGING'] ?? '';
 
-  static String login = '/user/login';
-  static String profile = '/user/profile';
-  static const register = '/user/register';
-  static const uploadPhoto = '/user/upload_photo';
-  static const movieList = '/movie/list';
-  static const favorites = '/movie/favorites';
-  static const favorite = '/movie/favorite';
+
 }

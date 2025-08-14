@@ -30,10 +30,6 @@ class $AssetsIconsGen {
   /// File path: assets/icons/Message.svg
   SvgGenImage get message => const SvgGenImage('assets/icons/Message.svg');
 
-  /// File path: assets/icons/SinFlixLogo.png
-  AssetGenImage get sinFlixLogo =>
-      const AssetGenImage('assets/icons/SinFlixLogo.png');
-
   /// File path: assets/icons/Unlock.svg
   SvgGenImage get unlock => const SvgGenImage('assets/icons/Unlock.svg');
 
@@ -97,7 +93,6 @@ class $AssetsIconsGen {
         gemPng,
         hide,
         message,
-        sinFlixLogo,
         unlock,
         accountCircleLine,
         account,

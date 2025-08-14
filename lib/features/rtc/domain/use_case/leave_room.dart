@@ -1,4 +1,3 @@
-// lib/features/rtc/domain/usecases/leave_room.dart
 import 'package:dating_app/features/rtc/domain/repositories/signaling_repository.dart';
 
 class LeaveRoom {

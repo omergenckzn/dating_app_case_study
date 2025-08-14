@@ -28,10 +28,11 @@ API_URL=https://example.com/api
 
 2. **Peer Connection**
 
-    * STUN/TURN server bilgileri ile `RTCPeerConnection` oluşturulur.
+    * STUN server bilgileri ile `RTCPeerConnection` oluşturulur.
     * Local track’ler (`audio`, `video`) eklenir.
     * `onTrack` event’i ile karşı tarafın videosu `remoteRenderer`’a bağlanır.
     * `onIceCandidate` ile ICE candidate’ler sinyalleşme servisine gönderilir.
+    * İleri seviye LTE-LTE veya Prod ortam için TURN serveri kurulmalıdır.
 
 3. **Signaling** (Harici Sunucu ile)
 
@@ -39,12 +40,6 @@ API_URL=https://example.com/api
     * **Callee** → `createAnswer()` → cevap gönder.
     * ICE candidate’ler karşılıklı eklenir.
 
-4. **Call Kontrolleri**
-
-    * `toggleMic()` → Mikrofon aç/kapa.
-    * `toggleCamera()` → Kamera aç/kapa.
-
----
 
 
 ## 📲 Oda Paylaşımı

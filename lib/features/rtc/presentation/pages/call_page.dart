@@ -156,7 +156,8 @@ class _CallViewState extends State<CallView> {
                     IconButton.filledTonal(
                       onPressed: () => _callBloc.add(const CallCamToggled()),
                       icon: Icon(
-                          state.camOn ? Icons.videocam : Icons.videocam_off),
+                        state.camOn ? Icons.videocam : Icons.videocam_off,
+                      ),
                     ),
                     const SizedBox(width: 12),
                     IconButton.filled(

@@ -1,10 +1,9 @@
 // lib/features/rtc/presentation/bloc/call_bloc.dart
-import 'package:bloc/bloc.dart';
 import 'package:dating_app/features/rtc/domain/use_case/leave_room.dart';
 import 'package:dating_app/features/rtc/domain/use_case/toggle_camera.dart';
 import 'package:dating_app/features/rtc/domain/use_case/toggle_mic.dart';
 import 'package:equatable/equatable.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'call_event.dart';
 part 'call_state.dart';
@@ -25,14 +24,18 @@ class CallBloc extends Bloc<CallEvent, CallState> {
   final LeaveRoom leaveRoom;
 
   Future<void> _onMicToggled(
-      CallMicToggled event, Emitter<CallState> emit) async {
-    final on = await toggleMic(); // returns bool
+    CallMicToggled event,
+    Emitter<CallState> emit,
+  ) async {
+    final on = toggleMic();
     emit(state.copyWith(micOn: on));
   }
 
   Future<void> _onCamToggled(
-      CallCamToggled event, Emitter<CallState> emit) async {
-    final on = await toggleCamera(); // returns bool
+    CallCamToggled event,
+    Emitter<CallState> emit,
+  ) async {
+    final on = toggleCamera();
     emit(state.copyWith(camOn: on));
   }
 

@@ -1,4 +1,3 @@
-// lib/features/rtc/domain/usecases/join_room.dart
 import 'package:dating_app/features/rtc/domain/entites/room.dart';
 
 import 'package:dating_app/features/rtc/domain/repositories/signaling_repository.dart';

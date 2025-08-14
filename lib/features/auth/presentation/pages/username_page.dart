@@ -21,7 +21,10 @@ class _UsernameViewState extends State<UsernameView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: 'Select Username'),
+      appBar: const CustomAppBar(
+        title: 'Select Username',
+        canPop: false,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -47,7 +50,6 @@ class _UsernameViewState extends State<UsernameView> {
             32.verticalSpace,
             PrimaryButton(
               text: 'Continue',
-
               onPressed: () async {
                 context.read<UsernameCubit>().setUsername(_ctrl.text);
                 if (context.read<UsernameCubit>().state != null) {

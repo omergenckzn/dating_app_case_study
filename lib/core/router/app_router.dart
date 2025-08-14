@@ -26,12 +26,5 @@ final class AppRouter extends RootStackRouter {
           transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
           durationInMilliseconds: 500,
         ),
-        AutoRoute(
-          page: NavbarRoute.page,
-          guards: [],
-          children: [
-            RedirectRoute(path: '*', redirectTo: ''),
-          ],
-        ),
       ];
 }

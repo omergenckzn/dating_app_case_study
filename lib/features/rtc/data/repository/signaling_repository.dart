@@ -1,4 +1,3 @@
-// lib/features/rtc/data/repositories/signaling_repository_impl.dart
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dating_app/features/rtc/data/data_source/signaling_data_source.dart';
@@ -22,7 +21,6 @@ class SignalingRepositoryImpl implements SignalingRepository {
   @override
   WebRTCService get rtc => _rtc;
 
-  // Caller flow
   @override
   Future<Room> createRoom({required String username}) async {
     String? roomId;
@@ -64,14 +62,11 @@ class SignalingRepositoryImpl implements SignalingRepository {
         },
       );
 
-      // Wait for answer and apply once
       _roomSubs[id] = _ds.roomStream(id).listen((s) async {
         final data = s.data();
         if (data == null) return;
 
-        // guard capacity (ui can show error separately)
-        final List<dynamic> parts =
-            (data['participants'] as List<dynamic>? ?? <dynamic>[]);
+        final parts = (data['participants'] as List<dynamic>? ?? <dynamic>[]);
         if (parts.length > 2) return;
 
         final ans = data['answer'] as Map<String, dynamic>?;
@@ -100,7 +95,6 @@ class SignalingRepositoryImpl implements SignalingRepository {
     }
   }
 
-// Callee flow
   @override
   Future<Room> joinRoom({
     required String username,
@@ -110,7 +104,7 @@ class SignalingRepositoryImpl implements SignalingRepository {
       final Map<String, dynamic>? room = await _ds.getRoom(roomId);
       if (room == null) throw Exception('Room not found');
 
-      final List<dynamic> current =
+      final current =
           (room['participants'] as List<dynamic>? ?? <dynamic>[]);
       if (current.length >= 2 && !current.contains(username)) {
         throw Exception('Room is full');
@@ -134,7 +128,6 @@ class SignalingRepositoryImpl implements SignalingRepository {
 
       final answer = await _rtc.createAnswer(offerSdp, offerType);
 
-      // Single transaction: add participant + write answer
       final updated = await _ds.joinRoomTx(
         roomId: roomId,
         username: username,
@@ -143,7 +136,6 @@ class SignalingRepositoryImpl implements SignalingRepository {
       );
       _log('joined room: $roomId as $username');
 
-      // Listen to caller candidates
       _candSubs['$roomId-caller'] = _ds
           .remoteCandidatesStream(roomId, forCallee: false)
           .listen((QuerySnapshot<Map<String, dynamic>> snap) {
@@ -156,7 +148,7 @@ class SignalingRepositoryImpl implements SignalingRepository {
         }
       });
 
-      final List<String> participants = List<String>.from(
+      final  participants = List<String>.from(
         (updated['participants'] as List<dynamic>? ?? <dynamic>[]),
       );
       return Room(id: roomId, participants: participants);

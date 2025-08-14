@@ -6,35 +6,39 @@ import 'package:flutter/material.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
     required this.title,
-    this.action,  // ← optional action widget
+    this.action,
+    this.canPop = true,
     super.key,
   });
 
   final String title;
   final Widget? action;
+  final bool canPop;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.transparent,
       elevation: 0,
-      leading: Padding(
-        padding: const EdgeInsets.only(left: 12),
-        child: InkWell(
-          onTap: () => context.router.maybePop(),
-          child: Container(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.white.withValues(alpha: 0.1),
-              border: Border.all(
-                color: Colors.white.withValues(alpha: 0.2),
+      leading: canPop
+          ? Padding(
+              padding: const EdgeInsets.only(left: 12),
+              child: InkWell(
+                onTap: () => context.router.maybePop(),
+                child: Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.white.withValues(alpha: 0.1),
+                    border: Border.all(
+                      color: Colors.white.withValues(alpha: 0.2),
+                    ),
+                  ),
+                  padding: const EdgeInsets.all(8),
+                  child: Assets.icons.arrowLeft.svg(),
+                ),
               ),
-            ),
-            padding: const EdgeInsets.all(8),
-            child: Assets.icons.arrowLeft.svg(),
-          ),
-        ),
-      ),
+            )
+          : null,
       title: Text(
         title,
         style: const TextStyle(
@@ -46,11 +50,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: true,
       actions: action != null
           ? [
-        Padding(
-          padding: const EdgeInsets.only(right: 12),
-          child: action!,
-        ),
-      ]
+              Padding(
+                padding: const EdgeInsets.only(right: 12),
+                child: action!,
+              ),
+            ]
           : null,
     );
   }
